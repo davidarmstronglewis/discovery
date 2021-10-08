@@ -4,7 +4,7 @@ let
   rustChannel = import ./nix/rust.nix { inherit sources; };
 
   rust = rustChannel.rust.override {
-    targets = [ ];
+    targets = [ "thumbv7em-none-eabihf" ];
     extensions = [
       "clippy-preview"
       "rust-src"
@@ -21,6 +21,9 @@ pkgs.mkShell {
     ++
     (with pkgs; [
       cargo-watch
+      cargo-edit
+      cargo-binutils
+      cargo-expand
       clippy
       gcc-arm-embedded
       minicom
